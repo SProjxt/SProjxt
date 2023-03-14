@@ -2,7 +2,10 @@ import React from 'react';
 
 const App: React.FC = () => {
   return (
-    <div>This is App file</div>
+    <>
+      <h1>This is App file</h1>
+      <img src={require('./assets/image/test.jpeg')} alt="test" />
+    </>
   )
 }
 export default App;
