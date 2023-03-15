@@ -13,6 +13,8 @@ module.exports = {
     'plugin:import/typescript',
     'plugin:jsx-a11y/recommended',
     'plugin:eslint-comments/recommended',
+    'prettier',
+    'plugin:prettier/recommended',
   ],
   rules: {
     'no-unused-vars': 'off',
