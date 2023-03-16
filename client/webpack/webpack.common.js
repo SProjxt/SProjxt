@@ -3,7 +3,18 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 
 module.exports = {
-  entry: path.resolve(__dirname, '..', './src/index.tsx'),
+  entry: {
+    index: {
+      import: './src/index.tsx',
+      dependOn: 'shared',
+    },
+    another: {
+      import: './src/another-module.ts',
+      dependOn: 'shared',
+    },
+    shared: 'lodash',
+  },
+  // path: path.resolve(__dirname, '..', './src/index.tsx'),
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx'],
   },
@@ -35,7 +46,7 @@ module.exports = {
   output: {
     publicPath: '/',
     path: path.resolve(__dirname, '..', './build'),
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -44,5 +55,21 @@ module.exports = {
     // new CopyPlugin({
     //   patterns: [{ from: 'source', to: 'dest' }]
     // })
-  ]
+  ],
+  // optimization: {
+  //   splitChunks: {
+  //     chunks: 'all',
+  //   },
+  // },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        reactVendor: {
+          test: /[\\/]node_modules[\\/](react|react-dom|react-router-dom)[\\/]/,
+          name: 'vendor-react',
+          chunks: 'all',
+        },
+      },
+    },
+  },
 }
