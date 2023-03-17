@@ -1,3 +1,32 @@
-h1 {
-  color: red;
+/** HTML */
+html,
+body {
+  margin: 0px;
+  background-color: $background-color-body;
+  height: 100vh;
+  font-size: $font-md;
+  font-family: 'Montserrat', sans-serif;
+
+  #root {
+    height: 100%;
+  }
 }
+
+button {
+  all: unset;
+}
+
+p {
+  margin: 0;
+}
+/** HTML */
+
+/** Class */
+.btn-main {
+  min-width: 100px;
+  padding: 0.5rem 2rem;
+  color: $color-white;
+  background-color: $background-color-btn;
+  border-radius: $border-radius-xs;
+}
+/** Class */

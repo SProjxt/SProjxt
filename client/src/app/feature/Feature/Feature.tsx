@@ -1,10 +1,10 @@
 import React from 'react';
 import FeaturesRoutes from './FeatureRoutes';
-import MainLayout from '../../common/layouts/MainLayout';
+import MainFeatureLayout from '../../common/layouts/MainFeatureLayout';
 
 const Features: React.FC = () => (
-  <MainLayout>
+  <MainFeatureLayout>
     <FeaturesRoutes />
-  </MainLayout>
+  </MainFeatureLayout>
 );
 export default Features;

@@ -1,0 +1,12 @@
+.login-card {
+  width: 40%;
+  height: 60vh;
+  margin: 0 auto;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: $background-color-card;
+  border-radius: $border-radius-md;
+  box-shadow: 0 5px 5px 5px $shadow-color-main;
+}
