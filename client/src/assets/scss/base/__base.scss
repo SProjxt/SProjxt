@@ -6,6 +6,7 @@ body {
   height: 100vh;
   font-size: $font-md;
   font-family: 'Montserrat', sans-serif;
+  color: $color-black;
 
   #root {
     height: 100%;
@@ -22,6 +23,9 @@ p {
 /** HTML */
 
 /** Class */
+.color-main {
+  color: $color-main;
+}
 .color-danger {
   color: red;
 }
