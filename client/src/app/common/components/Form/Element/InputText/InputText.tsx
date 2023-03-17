@@ -3,6 +3,7 @@ import { InputTextProps } from './types';
 
 const InputText: React.FC<InputTextProps> = ({
   field,
+  type,
   placeholder,
   handleChange,
 }) => {
@@ -10,13 +11,18 @@ const InputText: React.FC<InputTextProps> = ({
     <>
       <input
         {...field}
+        type={type}
+        autoComplete="off"
         placeholder={placeholder}
         onChange={(event) => {
-          if (handleChange) return field.onChange(event);
+          if (handleChange) event = handleChange(event);
+          field.onChange(event);
         }}
       />
     </>
   );
 };
+
+InputText.displayName = 'InputText';
 
 export default InputText;
