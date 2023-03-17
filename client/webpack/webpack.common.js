@@ -1,6 +1,7 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CopyPlugin = require('copy-webpack-plugin')
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+// const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -22,7 +23,7 @@ module.exports = {
     host: 'localhost',
     port: '8080',
     historyApiFallback: true,
-    open: true
+    open: true,
   },
   module: {
     rules: [
@@ -34,13 +35,15 @@ module.exports = {
             loader: 'babel-loader',
           },
         ],
-      }, {
+      },
+      {
         test: /\.(s(a|c)ss)$/,
-        use: ['style-loader', 'css-loader', 'sass-loader']
-      }, {
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
+      {
         test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
-        type: 'asset/resource'
-      }
+        type: 'asset/resource',
+      },
     ],
   },
   output: {
@@ -51,7 +54,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '..', './src/index.html'),
-    })
+    }),
     // new CopyPlugin({
     //   patterns: [{ from: 'source', to: 'dest' }]
     // })
@@ -62,6 +65,9 @@ module.exports = {
   //   },
   // },
   optimization: {
+    usedExports: 'global',
+    minimize: true,
+    minimizer: [new TerserPlugin()],
     splitChunks: {
       cacheGroups: {
         reactVendor: {
@@ -72,4 +78,4 @@ module.exports = {
       },
     },
   },
-}
+};
