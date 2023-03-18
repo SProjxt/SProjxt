@@ -23,6 +23,12 @@ p {
 /** HTML */
 
 /** Class */
+.font-md {
+  font-size: $font-md;
+}
+.font-lg {
+  font-size: $font-lg;
+}
 .color-main {
   color: $color-main;
 }
@@ -35,5 +41,15 @@ p {
   color: $color-white;
   background-color: $background-color-btn;
   border-radius: $border-radius-xs;
+}
+.avatar {
+  width: 40px;
+  height: 40px;
+  margin: 0 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $background-color-avatar;
+  border-radius: 50%;
 }
 /** Class */
