@@ -7,6 +7,7 @@ import { InputTextFieldProps } from './types';
 
 const InputTextField: React.FC<InputTextFieldProps> = ({
   label,
+  type,
   fieldName,
   placeholder,
   asterisk,
@@ -17,16 +18,17 @@ const InputTextField: React.FC<InputTextFieldProps> = ({
   const { field, formState } = useController(control);
 
   return (
-    <>
+    <div className="input-text-field">
       {label && (
-        <label>
-          <p>
-            {label} {asterisk && <span>*</span>}
+        <label className="my-2">
+          <p className="text-uppercase d-flex align-items-center">
+            {label} {asterisk && <span className="color-danger ms-2">*</span>}
           </p>
         </label>
       )}
       <InputText
         field={field}
+        type={type}
         placeholder={placeholder}
         handleChange={handleChange}
       />
@@ -36,8 +38,10 @@ const InputTextField: React.FC<InputTextFieldProps> = ({
           render={({ message }) => <ErrorMsg>{message}</ErrorMsg>}
         />
       )}
-    </>
+    </div>
   );
 };
+
+InputTextField.displayName = 'InputTextField';
 
 export default InputTextField;

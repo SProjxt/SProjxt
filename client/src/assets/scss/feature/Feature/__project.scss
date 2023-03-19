@@ -1,0 +1,27 @@
+.project-container {
+  width: 90%;
+  height: 90vh;
+  margin: 0 auto;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  overflow: scroll;
+  background-color: $background-color-card;
+  border-radius: $border-radius-md;
+}
+.project-card {
+  width: 350px;
+  height: 350px;
+  display: flex;
+  padding: 0 2rem;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: $background-color-white;
+  border-radius: $border-radius-md;
+
+  & svg {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+  }
+}

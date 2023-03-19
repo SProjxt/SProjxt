@@ -1,13 +1,14 @@
 import React from 'react';
 import MainContent from '../MainContent';
 
-const MainLayout: React.FC = (props) => {
+const MainAuthLayout: React.FC = (props) => {
   return (
     <>
-      <div className="d-flex main-layout h-100">
+      <div className="h-100 d-flex flex-column justify-content-center align-items-center">
         <MainContent>{props.children}</MainContent>
       </div>
     </>
   );
 };
-export default MainLayout;
+
+export default MainAuthLayout;

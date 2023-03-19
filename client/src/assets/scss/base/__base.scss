@@ -1,3 +1,55 @@
-h1 {
+/** HTML */
+html,
+body {
+  margin: 0px;
+  background-color: $background-color-body;
+  height: 100vh;
+  font-size: $font-md;
+  font-family: 'Montserrat', sans-serif;
+  color: $color-black;
+
+  #root {
+    height: 100%;
+  }
+}
+
+button {
+  all: unset;
+}
+
+p {
+  margin: 0;
+}
+/** HTML */
+
+/** Class */
+.font-md {
+  font-size: $font-md;
+}
+.font-lg {
+  font-size: $font-lg;
+}
+.color-main {
+  color: $color-main;
+}
+.color-danger {
   color: red;
 }
+.btn-main {
+  min-width: 100px;
+  padding: 0.5rem 2rem;
+  color: $color-white;
+  background-color: $background-color-btn;
+  border-radius: $border-radius-xs;
+}
+.avatar {
+  width: 40px;
+  height: 40px;
+  margin: 0 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $background-color-avatar;
+  border-radius: 50%;
+}
+/** Class */
