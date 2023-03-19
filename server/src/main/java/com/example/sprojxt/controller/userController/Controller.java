@@ -1,4 +1,4 @@
-package com.example.sprojxt;
+package com.example.sprojxt.controller.userController;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,4 +11,6 @@ public class Controller {
         System.out.println("HI");
         return "Hello World";
     }
+
+
 }
