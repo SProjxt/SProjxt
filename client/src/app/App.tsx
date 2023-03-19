@@ -1,11 +1,14 @@
 import React from 'react';
 import AppRoutes from './AppRoutes';
-import _ from '../another-module';
+import { Provider } from 'react-redux';
+import store from '../app/store';
 
 const App: React.FC = () => {
-  console.log(_.join(['Another', 'module', 'loaded!'], ' '));
-
-  return <AppRoutes />;
+  return (
+    <Provider store={store}>
+      <AppRoutes />
+    </Provider>
+  );
 };
 
 export default App;
