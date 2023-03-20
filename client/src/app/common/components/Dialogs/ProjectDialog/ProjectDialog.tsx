@@ -48,6 +48,26 @@ const ProjectDialog: React.FC<ProjectDialogProps> = (props) => {
           asterisk
           {...reactHookForm.register('state')}
         />
+        <div className="user-container my-2">
+          <div className="row h-100 p-3">
+            <div className="col-6">
+              <div className="d-flex align-items-center my-1">
+                <div className="avatar me-3" />
+                <p>Username</p>
+              </div>
+              <div className="d-flex align-items-center my-1">
+                <div className="avatar me-3" />
+                <p>Username</p>
+              </div>
+            </div>
+            <div className="col-6 vertical-line">
+              <div className="d-flex align-items-center my-1">
+                <div className="avatar me-3" />
+                <p>Username</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </form>
     </Dialog>
   );

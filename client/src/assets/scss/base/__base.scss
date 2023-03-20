@@ -22,26 +22,48 @@ p {
 }
 /** HTML */
 
-/** Class */
+/** Class font */
 .font-md {
   font-size: $font-md;
 }
+
 .font-lg {
   font-size: $font-lg;
 }
+/** Class font */
+
+/** Class color */
 .color-main {
   color: $color-main;
 }
 .color-danger {
   color: red;
 }
+/** Class color */
+
+/** Class Btn */
 .btn-main {
-  min-width: 100px;
+  min-width: 80px;
   padding: 0.5rem 2rem;
   color: $color-white;
-  background-color: $background-color-btn;
+  background-color: $background-color-btn-confirm;
   border-radius: $border-radius-xs;
 }
+
+.btn-minor {
+  min-width: 80px;
+  padding: 0.5rem 2rem;
+  color: $color-white;
+  background-color: $background-color-btn-cancel;
+  border-radius: $border-radius-xs;
+}
+/** Class Btn */
+
+/** Class other */
+.vertical-line {
+  border-left: 3px solid $vertical-line;
+}
+
 .avatar {
   width: 40px;
   height: 40px;
@@ -52,4 +74,4 @@ p {
   background-color: $background-color-avatar;
   border-radius: 50%;
 }
-/** Class */
+/** Class other */

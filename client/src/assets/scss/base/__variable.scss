@@ -2,7 +2,8 @@
 $background-color-white: #ffffff;
 $background-color-body: #e1eaf2;
 $background-color-card: #f0f4f6;
-$background-color-btn: #acd2e4;
+$background-color-btn-confirm: #acd2e4;
+$background-color-btn-cancel: #7b7b7b;
 $background-input-focus: #e9f3f8;
 $background-color-avatar: #7b7b7b;
 /** Background */
@@ -15,6 +16,10 @@ $border-radius-xs: 0.5rem;
 $border-color-blue: #acd2e4;
 $border-color-grey: #d0d7da;
 /** Border */
+
+/** line */
+$vertical-line: #f0f4f6;
+/** line */
 
 /** Font */
 $font-md: 20px;

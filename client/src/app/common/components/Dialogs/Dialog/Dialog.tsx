@@ -38,10 +38,19 @@ const Dialog: React.FC<DialogProps> = (props) => {
         </div>
         <div className="dialog-content">{props.children}</div>
         <div className="dialog-footer">
+          {props.showCancelBtn && (
+            <button
+              type="button"
+              className="btn-minor text-center mx-2"
+              onClick={handleCloseDialog}
+            >
+              {props.cancelBtnText}
+            </button>
+          )}
           {props.showConfirmBtn && (
             <button
               type="button"
-              className="btn-main"
+              className="btn-main text-center mx-2"
               onClick={handleConfirmDialog}
             >
               {props.confirmBtnText}
@@ -57,7 +66,9 @@ const Dialog: React.FC<DialogProps> = (props) => {
 Dialog.defaultProps = {
   confirmedAutoClose: true,
   showConfirmBtn: true,
+  showCancelBtn: true,
   confirmBtnText: 'Confirm',
+  cancelBtnText: 'Cancel',
 };
 
 export default Dialog;
