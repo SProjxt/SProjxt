@@ -5,4 +5,7 @@ export enum ROUTES {
   FEATURES = '',
   FEATURES__PROJECT = '/project',
   FEATURES__BOARD = '/board',
+  FEATURES__BACKLOG = '/backlog',
+  FEATURES__MEMBER = '/member',
+  FEATURES__STATISTICS = '/statistics',
 }

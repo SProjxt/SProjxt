@@ -2,10 +2,15 @@ import { DialogNameEnum } from '../../core/enum/element/dialog';
 
 export interface ElementState {
   dialogs: DialogsState;
+  navigation: NavigationState;
 }
 
 export const ELEMENTS_DIALOGS__SET_DIALOG_VISIBLE =
   'ELEMENT_DIALOGS__SET_DIALOG_VISIBLE';
+
+export interface NavigationState {
+  menu: string;
+}
 
 export interface DialogsState {
   ProjectDialog: DialogState;

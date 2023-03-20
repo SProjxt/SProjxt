@@ -11,6 +11,9 @@ const initialState: ElementState = {
       visible: false,
     },
   },
+  navigation: {
+    menu: '',
+  },
 };
 
 const elementReducer: Reducer<ElementState, ElementActions> = (
@@ -25,6 +28,7 @@ const elementReducer: Reducer<ElementState, ElementActions> = (
         ? action.payload.data
         : undefined;
       return {
+        ...state,
         dialogs: { ...state.dialogs, [action.payload.name]: targetDialogState },
       };
     }
