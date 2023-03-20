@@ -6,7 +6,9 @@ export interface DialogProps {
   title: string;
   confirmedAutoClose?: boolean;
   showConfirmBtn?: boolean;
+  showCancelBtn?: boolean;
   confirmBtnText?: string;
+  cancelBtnText?: string;
   icons?: string;
   onClose?: () => void;
   onConfirm?: () => void;

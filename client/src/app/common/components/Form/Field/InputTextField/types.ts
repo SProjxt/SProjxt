@@ -1,7 +1,7 @@
 import { UseFormRegisterReturn, FieldErrors } from 'react-hook-form';
 import { InputTextProps } from '../../Element/InputText/types';
 
-export interface InputText01FieldProps
+export interface InputTextFieldProps
   extends Omit<InputTextProps, 'name' | 'onChange' | 'onBlur'>,
     UseFormRegisterReturn {
   label: string;

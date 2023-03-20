@@ -1,7 +1,6 @@
-// eslint-disable-next-line eslint-comments/disable-enable-pair
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-// eslint-disable-next-line eslint-comments/disable-enable-pair
+/* eslint-disable eslint-comments/disable-enable-pair */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../../store/types';
@@ -12,7 +11,6 @@ import { FiPlus } from 'react-icons/fi';
 
 const Project: React.FC = () => {
   const dialogState = useSelector((state: RootState) => state.element.dialogs);
-  console.log('dialogState', dialogState);
   const reduxDispatch = useDispatch();
 
   const date = new Date();
