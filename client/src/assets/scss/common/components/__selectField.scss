@@ -1,18 +1,19 @@
-.input-text-field {
+.select-text-field {
   display: flex;
   flex-direction: column;
   width: 100%;
+  font-size: $font-md;
 
   & label {
     font-size: $font-md;
   }
-  & input {
+  & select {
     width: 100%;
     padding: 0.6rem 0.6rem;
     border-radius: $border-radius-xs;
     border: 2px solid $border-color-grey;
   }
-  & input:focus {
+  & select:focus {
     background: $background-input-focus;
     border: 2px solid $border-color-blue;
   }

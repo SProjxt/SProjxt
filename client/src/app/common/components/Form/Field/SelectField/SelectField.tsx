@@ -6,7 +6,7 @@ import ErrorMsg from '../ErrorMsg';
 
 const SelectField = React.forwardRef<HTMLSelectElement, SelectFieldProps>(
   ({ label, asterisk, errors, ...props }, ref) => (
-    <div className="input-text-field">
+    <div className="select-text-field">
       {label && (
         <label className="my-2">
           <p className="text-uppercase d-flex align-items-center">
