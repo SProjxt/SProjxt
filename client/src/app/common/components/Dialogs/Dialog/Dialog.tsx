@@ -33,7 +33,7 @@ const Dialog: React.FC<DialogProps> = (props) => {
       <div className="dialog-container" ref={dialogContainerElemRef}>
         <div className="dialog-head">
           <div className="dilog-title">
-            <p>{props.title}</p>
+            <h3 className="text-center">{props.title}</h3>
           </div>
         </div>
         <div className="dialog-content">{props.children}</div>
@@ -41,7 +41,7 @@ const Dialog: React.FC<DialogProps> = (props) => {
           {props.showConfirmBtn && (
             <button
               type="button"
-              className="button-main"
+              className="btn-main"
               onClick={handleConfirmDialog}
             >
               {props.confirmBtnText}
