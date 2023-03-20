@@ -4,4 +4,5 @@ export interface ProjectDialogProps {
 
 export interface FormValues {
   projectName: string;
+  state: string;
 }

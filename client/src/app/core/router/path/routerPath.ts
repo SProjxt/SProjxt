@@ -4,4 +4,5 @@ export enum ROUTES {
   AUTH__REGISTER = '/auth/register',
   FEATURES = '',
   FEATURES__PROJECT = '/project',
+  FEATURES__BOARD = '/board',
 }

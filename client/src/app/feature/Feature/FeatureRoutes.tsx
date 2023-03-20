@@ -11,6 +11,10 @@ const FeaturesRoutes: React.FC = () => {
           path={ROUTES.FEATURES__PROJECT}
           component={React.lazy(() => import('./Project'))}
         />
+        <Route
+          path={ROUTES.FEATURES__BOARD}
+          component={React.lazy(() => import('./Board'))}
+        />
         <Redirect to={ROUTES.FEATURES__PROJECT} />
       </Switch>
     </React.Suspense>

@@ -1,11 +1,11 @@
 import React from 'react';
 import { ErrorMessage } from '@hookform/error-message';
-import InputText from '../../Element/InputText';
+import Select from '../../Element/Select';
+import { SelectFieldProps } from './types';
 import ErrorMsg from '../ErrorMsg';
-import { InputTextFieldProps } from './types';
 
-const InputTextField = React.forwardRef<HTMLInputElement, InputTextFieldProps>(
-  ({ label, type, placeholder, asterisk, errors, ...props }, ref) => (
+const SelectField = React.forwardRef<HTMLSelectElement, SelectFieldProps>(
+  ({ label, asterisk, errors, ...props }, ref) => (
     <div className="input-text-field">
       {label && (
         <label className="my-2">
@@ -14,7 +14,7 @@ const InputTextField = React.forwardRef<HTMLInputElement, InputTextFieldProps>(
           </p>
         </label>
       )}
-      <InputText type={type} placeholder={placeholder} {...props} ref={ref} />
+      <Select {...props} ref={ref} />
       {errors && (
         <ErrorMessage
           name={props.name}
@@ -25,6 +25,6 @@ const InputTextField = React.forwardRef<HTMLInputElement, InputTextFieldProps>(
   )
 );
 
-InputTextField.displayName = 'InputAuthTextField';
+SelectField.displayName = 'InputAuthTextField';
 
-export default InputTextField;
+export default SelectField;
