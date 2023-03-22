@@ -22,7 +22,7 @@ const MainFeatureLayout: React.FC = (props) => {
           <div className="col-11 feature-layout-content">
             <MainContent>
               <div className="p-4">
-                <div className="d-flex justify-content-between mb-4">
+                <div className="d-flex justify-content-between mb-2">
                   <p className="text-uppercase">
                     <NavLink to={ROUTES.FEATURES__PROJECT}>project</NavLink>
                     <span className="mx-2">/</span>

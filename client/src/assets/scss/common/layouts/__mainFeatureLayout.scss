@@ -1,14 +1,14 @@
 .feature-layout-container {
   height: 100vh;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2rem 2rem 2rem 0;
 }
 
 .feature-layout-content {
   height: 100%;
   background-color: $background-color-card;
   border-radius: $border-radius-lg;
-  padding: 2rem;
+  padding: 0.5rem;
 }
 
 .navigation-content {

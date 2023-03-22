@@ -1,0 +1,32 @@
+.board-container {
+  display: flex;
+  height: 70vh;
+  overflow-x: scroll;
+  gap: 30px;
+}
+
+.board-card {
+  min-width: 200px;
+  height: 69vh;
+  border-radius: $border-radius-md;
+  background-color: $background-color-white;
+  box-shadow: 1px 3px 2px $shadow-color-black;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  height: 60vh;
+  overflow: scroll;
+}
+
+.card {
+  width: 175px;
+  min-height: 175px;
+  border-radius: $border-radius-sm;
+  background-color: $background-color-white;
+  border: none;
+  box-shadow: 1px 3px 2px $shadow-color-black;
+}
