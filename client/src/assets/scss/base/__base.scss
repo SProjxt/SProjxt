@@ -17,6 +17,11 @@ button {
   all: unset;
 }
 
+a {
+  all: unset;
+  cursor: pointer;
+}
+
 p {
   margin: 0;
 }
@@ -38,6 +43,9 @@ p {
 }
 .color-danger {
   color: red;
+}
+.color-black {
+  color: $color-black;
 }
 /** Class color */
 

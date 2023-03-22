@@ -1,8 +1,9 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { ROUTES } from '../../../core/router/path';
 import Navigation from '../../components/Navigation';
 import MainContent from '../MainContent';
+import { NavigationUrlOptions } from '../../../core/define/common';
 
 const MainFeatureLayout: React.FC = (props) => {
   const reactLocation = useLocation();
@@ -19,7 +20,28 @@ const MainFeatureLayout: React.FC = (props) => {
             <Navigation />
           </div>
           <div className="col-11 feature-layout-content">
-            <MainContent>{props.children}</MainContent>
+            <MainContent>
+              <div className="p-4">
+                <div className="d-flex justify-content-between">
+                  <p className="text-uppercase">
+                    <NavLink to={ROUTES.FEATURES__PROJECT}>project</NavLink>
+                    <span className="mx-2">/</span>
+                    <span>
+                      {
+                        NavigationUrlOptions.find(
+                          (item) => item.value === reactLocation.pathname
+                        )?.text
+                      }
+                    </span>
+                  </p>
+                  <div className="d-flex align-items-center">
+                    <div className="avatar me-3" />
+                    <p>Username</p>
+                  </div>
+                </div>
+                <div>{props.children}</div>
+              </div>
+            </MainContent>
           </div>
         </div>
       )}
