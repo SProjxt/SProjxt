@@ -65,6 +65,13 @@ p {
   background-color: $background-color-btn-cancel;
   border-radius: $border-radius-xs;
 }
+
+.btn-white-outline {
+  padding: 0.25rem 0.25rem;
+  border: 2px solid white;
+  border-radius: $border-radius-xs;
+  background-color: transparent;
+}
 /** Class Btn */
 
 /** Class other */

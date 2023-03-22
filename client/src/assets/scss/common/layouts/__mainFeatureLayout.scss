@@ -5,6 +5,13 @@
 }
 
 .feature-layout-content {
+  height: 100%;
   background-color: $background-color-card;
   border-radius: $border-radius-lg;
+  padding: 2rem;
+}
+
+.navigation-content {
+  height: 100%;
+  padding: 2rem;
 }
