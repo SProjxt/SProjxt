@@ -10,6 +10,9 @@ const initialState: ElementState = {
     ProjectDialog: {
       visible: false,
     },
+    CreateListDialog: {
+      visible: false,
+    },
   },
   navigation: {
     menu: '',

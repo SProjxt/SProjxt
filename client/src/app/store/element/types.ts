@@ -14,6 +14,7 @@ export interface NavigationState {
 
 export interface DialogsState {
   ProjectDialog: DialogState;
+  CreateListDialog: DialogState;
 }
 
 export interface DialogState<T = DialogDataState> {
