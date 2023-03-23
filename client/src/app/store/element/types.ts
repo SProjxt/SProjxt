@@ -13,6 +13,7 @@ export interface NavigationState {
 }
 
 export interface DialogsState {
+  WarningDialog: DialogState;
   ProjectDialog: DialogState;
   CreateListDialog: DialogState;
 }

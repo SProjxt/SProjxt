@@ -7,6 +7,9 @@ import {
 
 const initialState: ElementState = {
   dialogs: {
+    WarningDialog: {
+      visible: false,
+    },
     ProjectDialog: {
       visible: false,
     },

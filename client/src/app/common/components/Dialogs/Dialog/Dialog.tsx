@@ -5,6 +5,8 @@
 import React, { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { setDialogVisibleAction } from '../../../../store/element/action';
+import { IconTypeValueEnum } from '../../../../core/enum/element/icon';
+import { RiErrorWarningLine } from 'react-icons/ri';
 import { DialogProps } from './types';
 
 const Dialog: React.FC<DialogProps> = (props) => {
@@ -34,6 +36,11 @@ const Dialog: React.FC<DialogProps> = (props) => {
         <div className="dialog-head">
           <div className="dilog-title">
             <h3 className="text-center">{props.title}</h3>
+            {props.icon === IconTypeValueEnum.Warning && (
+              <div className="dialog-icon">
+                <RiErrorWarningLine />
+              </div>
+            )}
           </div>
         </div>
         <div className="dialog-content">{props.children}</div>
