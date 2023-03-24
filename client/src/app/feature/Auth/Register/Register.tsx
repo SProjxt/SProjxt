@@ -1,5 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { PageValidationSchema } from './validation';
 import InputTextField from '../../../common/components/Form/Field/InputTextField';
 import { FormValues } from './types';
 
@@ -11,6 +13,9 @@ const Register: React.FC = () => {
       password: '',
       passwordConfirm: '',
     },
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    /** @ts-ignore */
+    resolver: yupResolver(PageValidationSchema),
   });
   const handleSubmit = () => {
     console.log('reactHookForm', reactHookForm.getValues());
@@ -30,6 +35,7 @@ const Register: React.FC = () => {
             type="text"
             asterisk
             {...reactHookForm.register('username')}
+            errors={reactHookForm.formState.errors}
           />
         </div>
         <div className="my-1">
@@ -38,6 +44,7 @@ const Register: React.FC = () => {
             type="email"
             asterisk
             {...reactHookForm.register('email')}
+            errors={reactHookForm.formState.errors}
           />
         </div>
         <div className="my-1">
@@ -46,6 +53,7 @@ const Register: React.FC = () => {
             type="password"
             asterisk
             {...reactHookForm.register('password')}
+            errors={reactHookForm.formState.errors}
           />
         </div>
         <div className="my-1">
@@ -54,6 +62,7 @@ const Register: React.FC = () => {
             type="password"
             asterisk
             {...reactHookForm.register('passwordConfirm')}
+            errors={reactHookForm.formState.errors}
           />
         </div>
       </div>

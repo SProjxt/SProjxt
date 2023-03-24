@@ -1,14 +1,23 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 import InputTextField from '../../../common/components/Form/Field/InputTextField';
 import { FormValues } from './types';
 
 const Login: React.FC = () => {
+  const schema = yup.object().shape({
+    username: yup.string().required(),
+    password: yup.string().required(),
+  });
   const reactHookForm = useForm<FormValues>({
     defaultValues: {
       username: '',
       password: '',
     },
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    /** @ts-ignore */
+    resolver: yupResolver(schema),
   });
   const handleSubmit = () => {
     console.log('reactHookForm', reactHookForm.getValues());
@@ -26,6 +35,7 @@ const Login: React.FC = () => {
             type="text"
             asterisk
             {...reactHookForm.register('username')}
+            errors={reactHookForm.formState.errors}
           />
         </div>
         <div className="my-1">
@@ -34,6 +44,7 @@ const Login: React.FC = () => {
             type="password"
             asterisk
             {...reactHookForm.register('password')}
+            errors={reactHookForm.formState.errors}
           />
         </div>
         <p className="my-1">
