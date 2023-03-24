@@ -1,17 +1,26 @@
 import React from 'react';
 import Dialog from '../Dialog';
 import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { DialogNameEnum } from '../../../../core/enum/element/dialog';
 import InputTextField from '../../Form/Field/InputTextField';
 import SelectField from '../../Form/Field/SelectField';
 import { ProjectDialogProps, FormValues } from './types';
 
 const ProjectDialog: React.FC<ProjectDialogProps> = (props) => {
+  const schema = yup.object().shape({
+    projectName: yup.string().required(),
+    state: yup.string().required(),
+  });
   const reactHookForm = useForm<FormValues>({
     defaultValues: {
       projectName: '',
       state: '',
     },
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    /** @ts-ignore */
+    resolver: yupResolver(schema),
   });
   const handleFormSubmit = reactHookForm.handleSubmit((formValues) => {
     console.log('formValues', formValues);
@@ -32,6 +41,7 @@ const ProjectDialog: React.FC<ProjectDialogProps> = (props) => {
           type="text"
           asterisk
           {...reactHookForm.register('projectName')}
+          errors={reactHookForm.formState.errors}
         />
         <SelectField
           label="state"
@@ -47,6 +57,7 @@ const ProjectDialog: React.FC<ProjectDialogProps> = (props) => {
           ]}
           asterisk
           {...reactHookForm.register('state')}
+          errors={reactHookForm.formState.errors}
         />
         <div className="user-container my-2">
           <div className="row h-100 p-3">

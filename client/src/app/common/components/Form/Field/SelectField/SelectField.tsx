@@ -15,9 +15,10 @@ const SelectField = React.forwardRef<HTMLSelectElement, SelectFieldProps>(
         </label>
       )}
       <Select {...props} ref={ref} />
-      {errors && (
+      {errors !== undefined && Object.keys(errors).length !== 0 && (
         <ErrorMessage
           name={props.name}
+          errors={errors}
           render={({ message }) => <ErrorMsg>{message}</ErrorMsg>}
         />
       )}
