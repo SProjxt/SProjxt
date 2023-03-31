@@ -23,7 +23,7 @@ const ProjectDialog: React.FC<ProjectDialogProps> = (props) => {
     resolver: yupResolver(schema),
   });
   const handleFormSubmit = reactHookForm.handleSubmit((formValues) => {
-    console.log('formValues', formValues);
+    props.onConfirm({ ...formValues, id: 0, users: [] });
   });
   const handleConfirm = () => {
     handleFormSubmit();
