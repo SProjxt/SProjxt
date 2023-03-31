@@ -9,3 +9,9 @@ export interface FormValues {
   projectName: string;
   state: string;
 }
+
+export interface Users {
+  id: number;
+  name: string;
+  isSelected: boolean;
+}
