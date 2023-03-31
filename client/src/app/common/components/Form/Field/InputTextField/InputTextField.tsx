@@ -30,6 +30,6 @@ const InputTextField = React.forwardRef<HTMLInputElement, InputTextFieldProps>(
   }
 );
 
-InputTextField.displayName = 'InputAuthTextField';
+InputTextField.displayName = 'InputTextField';
 
 export default InputTextField;
