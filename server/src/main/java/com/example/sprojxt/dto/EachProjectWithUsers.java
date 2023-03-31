@@ -6,10 +6,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
-public class ShowProjectsResponse {
-    private List<EachProjectWithUsers> projectList = null;
+@AllArgsConstructor
+public class EachProjectWithUsers {
+    private String projectName;
+    private List<String> members;
+
 }

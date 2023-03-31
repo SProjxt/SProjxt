@@ -14,34 +14,32 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
+
 @Service
 public class JwtService {
 
-    private static final String SECRET_KEY= "4A404E635266556A586E327234753778214125442A472D4B6150645367566B59";
-    static {
-        System.out.println(SECRET_KEY.length());
-        System.out.println("gg");
-    }
-    public String extractUserName(String token){
-        return extractClaim(token,Claims::getSubject);
+    private static final String SECRET_KEY = "4A404E635266556A586E327234753778214125442A472D4B6150645367566B59";
+
+
+    public String extractUserName(String token) {
+        return extractClaim(token, Claims::getSubject);
     }
 
-    public <T> T extractClaim(String token, Function<Claims,T> claimsResolver){
+    public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
         final Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);//claimsResolver 函數對 claims 對象進行轉換
     }
 
 
-    public String generateToken(UserDetails userDetails){
-        return generateToken(new HashMap<>(),userDetails);
+    public String generateToken(UserDetails userDetails) {
+        return generateToken(new HashMap<>(), userDetails);
     }
 
-    public boolean isTokenValid(String token, UserDetails userDetails){
-        final String username = extractUserName(token);
-        return (username.equals(userDetails.getUsername())) && !isTokenExpired(token);
+    public boolean isTokenValid(String token) {
+        return !isTokenExpired(token);
     }
 
-    private boolean isTokenExpired(String token){
+    private boolean isTokenExpired(String token) {
         return extractExpiration(token).before(new Date());
     }
 
@@ -50,19 +48,18 @@ public class JwtService {
     }
 
     public String generateToken(
-            Map<String,Object> extractClaims,
+            Map<String, Object> extractClaims,
             UserDetails userDetails
-    ){
+    ) {
 
         return Jwts
                 .builder()
                 .setClaims(extractClaims)
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis()+1000*60*24))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact();
-
 
 
     }
@@ -71,7 +68,7 @@ public class JwtService {
     //it is actually the payload content
     //標準公認的一些訊息建議你可以放，但並不強迫
     //Jwts 哪來的？
-    private Claims extractAllClaims(String token){
+    private Claims extractAllClaims(String token) {
         return Jwts
                 .parserBuilder()//創建一個 JWT 解析器的建構器（builder）對象
                 .setSigningKey(getSignInKey())//設置 JWT 簽名金鑰

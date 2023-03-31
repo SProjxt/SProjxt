@@ -1,9 +1,6 @@
 package com.example.sprojxt.controller;
 
-import com.example.sprojxt.dto.CreateUserRequest;
-import com.example.sprojxt.dto.CreateUserResponse;
-import com.example.sprojxt.dto.ShowProjectsRequest;
-import com.example.sprojxt.dto.ShowProjectsResponse;
+import com.example.sprojxt.dto.*;
 import com.example.sprojxt.service.api.CreateUserService;
 import com.example.sprojxt.service.api.ShowProjectsService;
 import lombok.RequiredArgsConstructor;
@@ -32,8 +29,7 @@ public class Controller {
 
     @RequestMapping(value = "/showProjects",consumes = MediaType.APPLICATION_JSON_VALUE)
     public ShowProjectsResponse showProjects(@RequestBody ShowProjectsRequest request){
-        showProject.process(request);
-        return null;
+        return showProject.process(request);
     }
 
 
