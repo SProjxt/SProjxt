@@ -6,8 +6,14 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { DialogNameEnum } from '../../../../core/enum/element/dialog';
 import InputTextField from '../../Form/Field/InputTextField';
 import SelectField from '../../Form/Field/SelectField';
-import { ProjectDialogProps, FormValues, Users } from './types';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { ProjectDialogProps, FormValues, Column } from './types';
+import {
+  DragDropContext,
+  Droppable,
+  Draggable,
+  DropResult,
+} from 'react-beautiful-dnd';
+import { getDragDropCardResult } from '../../../../core/service/commonService';
 
 const ProjectDialog: React.FC<ProjectDialogProps> = (props) => {
   const schema = yup.object().shape({
@@ -15,36 +21,46 @@ const ProjectDialog: React.FC<ProjectDialogProps> = (props) => {
     state: yup.string().required(),
   });
 
-  const [users, setUsers] = useState<Users[]>([
+  const [columns, setColumns] = useState<Column[]>([
     {
       id: 1,
-      name: 'Steven',
-      isSelected: false,
+      items: [
+        {
+          id: 1,
+          name: 'Steven',
+          isSelected: false,
+        },
+        {
+          id: 2,
+          name: 'Ben',
+          isSelected: false,
+        },
+        {
+          id: 3,
+          name: 'Micheal',
+          isSelected: false,
+        },
+      ],
     },
     {
       id: 2,
-      name: 'Ben',
-      isSelected: false,
-    },
-    {
-      id: 3,
-      name: 'Micheal',
-      isSelected: false,
-    },
-    {
-      id: 4,
-      name: 'Weng',
-      isSelected: true,
-    },
-    {
-      id: 5,
-      name: 'Sharon',
-      isSelected: true,
-    },
-    {
-      id: 6,
-      name: 'Vicky',
-      isSelected: true,
+      items: [
+        {
+          id: 4,
+          name: 'Weng',
+          isSelected: true,
+        },
+        {
+          id: 5,
+          name: 'Sharon',
+          isSelected: true,
+        },
+        {
+          id: 6,
+          name: 'Vicky',
+          isSelected: true,
+        },
+      ],
     },
   ]);
 
@@ -65,6 +81,12 @@ const ProjectDialog: React.FC<ProjectDialogProps> = (props) => {
   const handleConfirm = () => {
     handleFormSubmit();
   };
+
+  const onDragEnd = (result: DropResult) => {
+    const columnsUpdated = getDragDropCardResult(result, columns);
+    setColumns(columnsUpdated);
+  };
+
   return (
     <Dialog
       name={DialogNameEnum.ProjectDialog}
@@ -97,81 +119,77 @@ const ProjectDialog: React.FC<ProjectDialogProps> = (props) => {
           errors={reactHookForm.formState.errors}
         />
         <div className="user-container my-2">
-          <DragDropContext onDragEnd={() => console.log(123)}>
+          <DragDropContext onDragEnd={onDragEnd}>
             <div className="row h-100 p-3">
               <div className="col-6">
-                <Droppable droppableId="1">
+                <Droppable droppableId="0">
                   {(droppableProvided) => (
                     <div
                       ref={droppableProvided.innerRef}
                       {...droppableProvided.droppableProps}
                     >
-                      {users.map((user) => {
-                        if (!user.isSelected) {
-                          return (
-                            <Draggable
-                              key={user.id}
-                              draggableId={`${user.id}`}
-                              index={user.id}
-                            >
-                              {(draggableProvided, draggableSnapshot) => (
-                                <div
-                                  className={
-                                    'd-flex align-items-center user-item my-2 ' +
-                                    (draggableSnapshot.isDragging
-                                      ? 'isDragging'
-                                      : '')
-                                  }
-                                  ref={draggableProvided.innerRef}
-                                  {...draggableProvided.draggableProps}
-                                  {...draggableProvided.dragHandleProps}
-                                >
-                                  <div className="avatar me-3" />
-                                  <p>{user.name}</p>
-                                </div>
-                              )}
-                            </Draggable>
-                          );
-                        }
+                      {columns[0].items.map((user, index) => {
+                        return (
+                          <Draggable
+                            key={user.id}
+                            draggableId={`${user.id}`}
+                            index={index}
+                          >
+                            {(draggableProvided, draggableSnapshot) => (
+                              <div
+                                className={
+                                  'd-flex align-items-center user-item my-2 ' +
+                                  (draggableSnapshot.isDragging
+                                    ? 'isDragging'
+                                    : '')
+                                }
+                                ref={draggableProvided.innerRef}
+                                {...draggableProvided.draggableProps}
+                                {...draggableProvided.dragHandleProps}
+                              >
+                                <div className="avatar me-3" />
+                                <p>{user.name}</p>
+                              </div>
+                            )}
+                          </Draggable>
+                        );
                       })}
                     </div>
                   )}
                 </Droppable>
               </div>
               <div className="col-6 vertical-line">
-                <Droppable droppableId="2">
+                <Droppable droppableId="1">
                   {(droppableProvided) => (
                     <div
                       ref={droppableProvided.innerRef}
                       {...droppableProvided.droppableProps}
                     >
-                      {users.map((user) => {
-                        if (user.isSelected) {
-                          return (
-                            <Draggable
-                              key={user.id}
-                              draggableId={`${user.id}`}
-                              index={user.id}
-                            >
-                              {(draggableProvided, draggableSnapshot) => (
-                                <div
-                                  className={
-                                    'd-flex align-items-center user-item my-2 ' +
-                                    (draggableSnapshot.isDragging
-                                      ? 'isDragging'
-                                      : '')
-                                  }
-                                  ref={draggableProvided.innerRef}
-                                  {...draggableProvided.draggableProps}
-                                  {...draggableProvided.dragHandleProps}
-                                >
-                                  <div className="avatar me-3" />
-                                  <p>{user.name}</p>
-                                </div>
-                              )}
-                            </Draggable>
-                          );
-                        }
+                      {columns[1].items.map((user, index) => {
+                        return (
+                          <Draggable
+                            key={user.id}
+                            draggableId={`${user.id}`}
+                            index={index}
+                          >
+                            {(draggableProvided, draggableSnapshot) => (
+                              <div
+                                className={
+                                  'd-flex align-items-center user-item my-2 ' +
+                                  (draggableSnapshot.isDragging
+                                    ? 'isDragging'
+                                    : '')
+                                }
+                                ref={draggableProvided.innerRef}
+                                {...draggableProvided.draggableProps}
+                                {...draggableProvided.dragHandleProps}
+                              >
+                                <div className="avatar me-3" />
+                                <p>{user.name}</p>
+                              </div>
+                            )}
+                          </Draggable>
+                        );
                       })}
                     </div>
                   )}

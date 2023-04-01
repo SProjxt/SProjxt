@@ -10,6 +10,11 @@ export interface FormValues {
   state: string;
 }
 
+export interface Column {
+  id: number;
+  items: Users[];
+}
+
 export interface Users {
   id: number;
   name: string;
