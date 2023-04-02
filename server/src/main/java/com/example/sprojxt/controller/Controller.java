@@ -24,6 +24,7 @@ public class Controller {
 
     @RequestMapping(value = "/createUser",consumes = MediaType.APPLICATION_JSON_VALUE)
     public CreateUserResponse createUser(@RequestBody CreateUserRequest request){
+
         return createUserService.process(request);
     }
 
