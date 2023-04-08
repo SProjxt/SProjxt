@@ -3,24 +3,33 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import InputTextField from '../../../common/components/Form/Field/InputTextField';
+import validationService from '../../../core/service/validationService';
+import apiService from '../../../api/service/apiService';
 import { FormValues } from './types';
 
 const Login: React.FC = () => {
   const schema = yup.object().shape({
-    username: yup.string().required(),
+    email: yup.string().required().concat(validationService.emailSchema),
     password: yup.string().required(),
   });
   const reactHookForm = useForm<FormValues>({
     defaultValues: {
-      username: '',
+      email: '',
       password: '',
     },
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     /** @ts-ignore */
     resolver: yupResolver(schema),
   });
-  const handleSubmit = () => {
-    console.log('reactHookForm', reactHookForm.getValues());
+  const handleSubmit = async () => {
+    try {
+      await apiService.postAuthAuthenticate({
+        email: reactHookForm.getValues('email'),
+        password: reactHookForm.getValues('password'),
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <form
@@ -31,10 +40,10 @@ const Login: React.FC = () => {
       <div className="h-100 d-flex flex-column justify-content-center">
         <div className="my-1">
           <InputTextField
-            label="username"
+            label="email"
             type="text"
             asterisk
-            {...reactHookForm.register('username')}
+            {...reactHookForm.register('email')}
             errors={reactHookForm.formState.errors}
           />
         </div>

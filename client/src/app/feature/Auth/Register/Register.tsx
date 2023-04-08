@@ -3,7 +3,10 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { PageValidationSchema } from './validation';
 import InputTextField from '../../../common/components/Form/Field/InputTextField';
+import SelectField from '../../../common/components/Form/Field/SelectField';
 import { FormValues } from './types';
+import { DepartmentOptions } from '../../../core/define/common';
+import apiService from '../../../api/service/apiService';
 
 const Register: React.FC = () => {
   const reactHookForm = useForm<FormValues>({
@@ -12,13 +15,23 @@ const Register: React.FC = () => {
       email: '',
       password: '',
       passwordConfirm: '',
+      department: '',
     },
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     /** @ts-ignore */
     resolver: yupResolver(PageValidationSchema),
   });
-  const handleSubmit = () => {
-    console.log('reactHookForm', reactHookForm.getValues());
+  const handleSubmit = async () => {
+    try {
+      await apiService.postCreateUser({
+        email: reactHookForm.getValues('email'),
+        username: reactHookForm.getValues('username'),
+        password: reactHookForm.getValues('password'),
+        department: reactHookForm.getValues('department'),
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -41,9 +54,18 @@ const Register: React.FC = () => {
         <div className="my-1">
           <InputTextField
             label="email"
-            type="email"
+            type="text"
             asterisk
             {...reactHookForm.register('email')}
+            errors={reactHookForm.formState.errors}
+          />
+        </div>
+        <div className="my-1">
+          <SelectField
+            label="department"
+            options={DepartmentOptions}
+            asterisk
+            {...reactHookForm.register('department')}
             errors={reactHookForm.formState.errors}
           />
         </div>

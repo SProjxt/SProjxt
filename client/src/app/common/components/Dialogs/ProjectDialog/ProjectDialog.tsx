@@ -55,11 +55,6 @@ const ProjectDialog: React.FC<ProjectDialogProps> = (props) => {
           name: 'Sharon',
           isSelected: true,
         },
-        {
-          id: 6,
-          name: 'Vicky',
-          isSelected: true,
-        },
       ],
     },
   ]);
