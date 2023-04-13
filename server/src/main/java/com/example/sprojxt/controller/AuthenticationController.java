@@ -22,9 +22,7 @@ public class AuthenticationController {
     public ResponseEntity<AuthenticationResponse> register(
             @RequestBody AuthenticationRequest request
     ){
-//        Users a = Users.builder().username("fff").department("ff").email("fff").password("ffff").build();
-//
-//        repository.save(a);
+
 
         return ResponseEntity.ok(service.authenticate(request));
     }

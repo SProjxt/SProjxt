@@ -47,7 +47,14 @@ public class AuthenticationService {
 
         var user = (Users) authentication.getPrincipal();
         var jwtToken = jwtService.generateToken(user);
-        return AuthenticationResponse.builder().token(jwtToken).build();
+        return AuthenticationResponse
+                .builder()
+                .token(jwtToken)
+                .userName(user.getUsername())
+                .department(user.getDepartment())
+                .email(user.getEmail()).build();
+
+//        return AuthenticationResponse.builder().token(jwtToken).build();
     }
 
 

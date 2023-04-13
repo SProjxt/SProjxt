@@ -1,5 +1,6 @@
 package com.example.sprojxt.controller;
 
+import com.example.sprojxt.error.AuthenticationFailException;
 import com.example.sprojxt.error.DuplicateUserException;
 import com.example.sprojxt.error.ErrorResponse;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,16 @@ public class ExceptionHandlerController {
         ErrorResponse error = new ErrorResponse();
         error.setStatus(HttpStatus.CONFLICT.toString());
         error.setMessage(ex.getMessage());
+        error.setTimeStamp(System.currentTimeMillis());
+        return error;
+    }
+
+    @ExceptionHandler(AuthenticationFailException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorResponse AuthenticationFailException(AuthenticationFailException e){
+        ErrorResponse error = new ErrorResponse();
+        error.setStatus(HttpStatus.BAD_REQUEST.toString());
+        error.setMessage(e.getMessage());
         error.setTimeStamp(System.currentTimeMillis());
         return error;
     }

@@ -13,8 +13,9 @@ public interface IUserRepository extends JpaRepository<Users,Integer> {
     //Optional 設計的意義就是用來表示 method 的回傳值可能會是空的
     List<Users> findByEmail(String email);
 
+    Users findByUsername(String username);
 
-
+    List<Users> findAll();
 
 
     int countByEmail(String email);

@@ -2,8 +2,10 @@ package com.example.sprojxt.controller;
 
 import com.example.sprojxt.dto.*;
 import com.example.sprojxt.service.api.CreateUserService;
+import com.example.sprojxt.service.api.FindAllUsers;
 import com.example.sprojxt.service.api.ShowProjectsService;
 import lombok.RequiredArgsConstructor;
+import lombok.val;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +17,7 @@ public class Controller {
 
     private final CreateUserService createUserService;
     private final ShowProjectsService showProject;
+    private final FindAllUsers findAllUsers;
 
     @RequestMapping("/test")
     public String test(){
@@ -32,6 +35,21 @@ public class Controller {
     public ShowProjectsResponse showProjects(@RequestBody ShowProjectsRequest request){
         return showProject.process(request);
     }
+
+    @RequestMapping(value = "/allUsers",consumes = MediaType.APPLICATION_JSON_VALUE)
+    public FindAllUsersResponse findAllUsers(@RequestBody FindAllUsersRequest request){
+        val res = findAllUsers.process(request);
+        return res;
+    }
+
+    @RequestMapping(value = "/createProject",consumes = MediaType.APPLICATION_JSON_VALUE)
+    public createProjectResponse findAllUsers(@RequestBody createProjectRequest request){
+        return null;
+    }
+
+
+
+
 
 
 }
