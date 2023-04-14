@@ -20,16 +20,17 @@ public class JwtService {
 
     private static final String SECRET_KEY = "4A404E635266556A586E327234753778214125442A472D4B6150645367566B59";
 
-
     public String extractUserName(String token) {
-        return extractClaim(token, Claims::getSubject);
+        return extractClaim(token,
+                (claims) -> claims.get("email", String.class));
     }
 
-    public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
+    public <T> T extractClaim(String token,
+            Function<Claims, T> claimsResolver) {
         final Claims claims = extractAllClaims(token);
-        return claimsResolver.apply(claims);//claimsResolver 函數對 claims 對象進行轉換
+        return claimsResolver.apply(
+                claims);//claimsResolver 函數對 claims 對象進行轉換
     }
-
 
     public String generateToken(UserDetails userDetails) {
         return generateToken(new HashMap<>(), userDetails);
@@ -47,20 +48,16 @@ public class JwtService {
         return extractClaim(token, Claims::getExpiration);
     }
 
-    public String generateToken(
-            Map<String, Object> extractClaims,
-            UserDetails userDetails
-    ) {
+    public String generateToken(Map<String, Object> extractClaims,
+            UserDetails userDetails) {
 
-        return Jwts
-                .builder()
-                .setClaims(extractClaims)
+        return Jwts.builder().setClaims(extractClaims)
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
+                .setExpiration(new Date(
+                        System.currentTimeMillis() + 1000 * 60 * 24))
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact();
-
 
     }
 
@@ -69,11 +66,11 @@ public class JwtService {
     //標準公認的一些訊息建議你可以放，但並不強迫
     //Jwts 哪來的？
     private Claims extractAllClaims(String token) {
-        return Jwts
-                .parserBuilder()//創建一個 JWT 解析器的建構器（builder）對象
+        return Jwts.parserBuilder()//創建一個 JWT 解析器的建構器（builder）對象
                 .setSigningKey(getSignInKey())//設置 JWT 簽名金鑰
                 .build()//建構 JWT 解析器對象
-                .parseClaimsJws(token) //這個方法會返回一個 Jws（JSON Web Signature）對象，三部分。
+                .parseClaimsJws(
+                        token) //這個方法會返回一個 Jws（JSON Web Signature）對象，三部分。
                 .getBody();//從 Jws 對象中獲取 JWT 的 payload 部分 (也就是內容)
     }
 

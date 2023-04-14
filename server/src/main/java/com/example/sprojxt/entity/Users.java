@@ -55,10 +55,8 @@ public class Users implements UserDetails {
     @Override
     public String getUsername() {
 //        return username;
-        return email;//i gotta ask this
+        return username;//i gotta ask this
     }
-
-    public String getUserEmail(){return email;}//
 
     @Override
     public boolean isAccountNonExpired() {

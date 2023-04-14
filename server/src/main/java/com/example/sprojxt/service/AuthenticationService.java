@@ -12,6 +12,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
@@ -22,40 +25,36 @@ public class AuthenticationService {
     private final JwtService jwtService;
 
     private final AuthenticationManager authenticationManager;
-    public AuthenticationResponse register(RegisterRequest request){
-        var user = Users.builder()
-                .username(request.getLastname())
+
+    public AuthenticationResponse register(RegisterRequest request) {
+        var user = Users.builder().username(request.getLastname())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .role(Role.USER)
-                .build();
-//        Users a = Users.builder().username("fff").department("ff").email("fff").password("ffff").build();
-//        repository.save(a);
+                .role(Role.USER).build();
+        //        Users a = Users.builder().username("fff").department("ff").email("fff").password("ffff").build();
+        //        repository.save(a);
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder().token(jwtToken).build();
     }
 
-    public AuthenticationResponse authenticate(AuthenticationRequest request){
-        var authentication=authenticationManager.authenticate(
-                        new UsernamePasswordAuthenticationToken(
-                                request.getEmail(),
-                                request.getPassword()
-                        )
-
+    public AuthenticationResponse authenticate(
+            AuthenticationRequest request) {
+        var authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        request.getEmail(), request.getPassword())
 
         );
 
         var user = (Users) authentication.getPrincipal();
-        var jwtToken = jwtService.generateToken(user);
-        return AuthenticationResponse
-                .builder()
-                .token(jwtToken)
+        var objectMap = Map.<String, Object> of("email", user.getEmail());
+        var jwtToken = jwtService.generateToken(objectMap, user);
+        return AuthenticationResponse.builder().token(jwtToken)
                 .userName(user.getUsername())
                 .department(user.getDepartment())
-                .email(user.getEmail()).build();
+                .email(user.getEmail())
+                .build();
 
-//        return AuthenticationResponse.builder().token(jwtToken).build();
+        //        return AuthenticationResponse.builder().token(jwtToken).build();
     }
-
 
 }
