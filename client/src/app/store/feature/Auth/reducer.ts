@@ -3,17 +3,8 @@ import storageService from '../../../core/service/storageService';
 import { StorageKeysEnum } from '../../../core/enum/storage';
 import { AuthState, AuthActions } from './types';
 
-const initialState: AuthState = () => {
-  if (storageService.getItem(StorageKeysEnum.Authorization)) {
-    return {
-      token:
-        JSON.parse(storageService.getItem(StorageKeysEnum.Authorization)) ?? '',
-    };
-  } else {
-    return {
-      token: '',
-    };
-  }
+const initialState: AuthState = {
+  token: storageService.getItem(StorageKeysEnum.Authorization) ?? '',
 };
 
 const authReducer: Reducer<AuthState, AuthActions> = (
