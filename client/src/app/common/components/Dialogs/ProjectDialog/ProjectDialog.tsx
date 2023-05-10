@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import apiService from '../../../../api/service/apiService';
 import Dialog from '../Dialog';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
@@ -16,6 +17,12 @@ import {
 import { getDragDropCardResult } from '../../../../core/service/commonService';
 
 const ProjectDialog: React.FC<ProjectDialogProps> = (props) => {
+  useEffect(() => {
+    (async () => {
+      const response = await apiService.postAllUsers({});
+      console.log('response', response);
+    })();
+  }, []);
   const schema = yup.object().shape({
     projectName: yup.string().required(),
     state: yup.string().required(),

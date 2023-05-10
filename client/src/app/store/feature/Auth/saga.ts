@@ -21,7 +21,6 @@ function* executeRegister(action: ExecuteRegisterAction) {
 }
 
 function* executeLogin(action: ExecuteLoginAction) {
-  console.log('action', action.payload.args);
   const response: PostAuthAuthenticateResp = yield call(
     apiService.postAuthAuthenticate,
     action.payload.args
@@ -29,7 +28,6 @@ function* executeLogin(action: ExecuteLoginAction) {
   if (response) {
     storageService.setItem(StorageKeysEnum.Authorization, response.token);
   }
-  console.log('response', response);
 }
 
 export default function* watchAuthSaga() {
