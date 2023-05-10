@@ -3,7 +3,7 @@ import storageService from '../../../core/service/storageService';
 import { StorageKeysEnum } from '../../../core/enum/storage';
 import { PostAuthAuthenticateResp } from '../../../api/models/post/postAuthAuthenticate';
 import { PostCreateUserResp } from '../../../api/models/post/postCreateUser';
-import { takeEvery, all, call } from 'redux-saga/effects';
+import { takeEvery, all, call, put } from 'redux-saga/effects';
 import {
   LOGIN__USERS,
   REGISTER__USERS,
@@ -11,6 +11,7 @@ import {
   ExecuteLoginAction,
 } from './types';
 import { sagaBoundary } from '../../service';
+import { executeSaveAuthorizationAction } from './action';
 
 function* executeRegister(action: ExecuteRegisterAction) {
   const response: PostCreateUserResp = yield call(
@@ -26,6 +27,11 @@ function* executeLogin(action: ExecuteLoginAction) {
     action.payload.args
   );
   if (response) {
+    yield put(
+      executeSaveAuthorizationAction({
+        token: response.token,
+      })
+    );
     storageService.setItem(StorageKeysEnum.Authorization, response.token);
   }
 }
