@@ -6,12 +6,10 @@ import InputTextField from '../../../common/components/Form/Field/InputTextField
 import validationService from '../../../core/service/validationService';
 import { useDispatch } from 'react-redux';
 import { executeLoginAction } from '../../../store/feature/Auth/action';
-// import apiService from '../../../api/service/apiService';
 import { FormValues } from './types';
 
 const Login: React.FC = () => {
   const reduxDispatch = useDispatch();
-
   const schema = yup.object().shape({
     email: yup.string().required().concat(validationService.emailSchema),
     password: yup.string().required(),
@@ -27,14 +25,6 @@ const Login: React.FC = () => {
   });
   const handleSubmit = async () => {
     reduxDispatch(executeLoginAction(reactHookForm.getValues()));
-    // try {
-    //   await apiService.postAuthAuthenticate({
-    //     email: reactHookForm.getValues('email'),
-    //     password: reactHookForm.getValues('password'),
-    //   });
-    // } catch (error) {
-    //   console.log(error);
-    // }
   };
   return (
     <form

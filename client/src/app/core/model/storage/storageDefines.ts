@@ -6,5 +6,5 @@ import { StorageKeysEnum, StorageTypesEnum } from '../../enum/storage';
 export const StorageDefines: Readonly<
   Record<StorageKeysEnum, StorageTypesEnum>
 > = {
-  [StorageKeysEnum.Authorization]: StorageTypesEnum.Cookies,
+  [StorageKeysEnum.Authorization]: StorageTypesEnum.Local,
 };

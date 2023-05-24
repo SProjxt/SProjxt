@@ -98,6 +98,10 @@ p {
   align-items: center;
   background-color: $background-color-avatar;
   border-radius: 50%;
+
+  p {
+    color: white;
+  }
 }
 
 /** Class other */
