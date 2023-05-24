@@ -2,10 +2,7 @@ package com.example.sprojxt.service.api;
 
 import com.example.sprojxt.dao.CreateUserDao;
 import com.example.sprojxt.dao.FindUserDao;
-import com.example.sprojxt.dto.CreateUserRequest;
-import com.example.sprojxt.dto.CreateUserResponse;
-import com.example.sprojxt.dto.FindAllUsersRequest;
-import com.example.sprojxt.dto.FindAllUsersResponse;
+import com.example.sprojxt.dto.*;
 import com.example.sprojxt.entity.Users;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
@@ -23,9 +20,22 @@ public class FindAllUsers implements ApiService<FindAllUsersRequest, FindAllUser
     @Override
     public FindAllUsersResponse process(FindAllUsersRequest reuqest) {
         List<Users> users = findUserDao.findAll();
-        val userList = users.stream()
-                .map(user ->user.getUsername())
-                .collect(Collectors.toList());
-        return new FindAllUsersResponse(userList);
+//        val userList = users.stream()
+//                .map(user ->user.getUsername())
+//                .collect(Collectors.toList());
+//        return new FindAllUsersResponse(users);
+        var res = new ArrayList<UserDetail>();
+        users.forEach(user -> {
+            UserDetail userDetail = UserDetail.builder()
+                    .username(user.getUsername())
+                    .userEmail(user.getEmail())
+                    .department(user.getDepartment())
+                    .build();
+            res.add(userDetail);
+        });
+        FindAllUsersResponse response = new FindAllUsersResponse();
+        response.setAllMembers(res);
+        return response;
+
     }
 }

@@ -1,6 +1,7 @@
 package com.example.sprojxt.controller;
 
 import com.example.sprojxt.dto.*;
+import com.example.sprojxt.service.api.CreateProjectService;
 import com.example.sprojxt.service.api.CreateUserService;
 import com.example.sprojxt.service.api.FindAllUsers;
 import com.example.sprojxt.service.api.ShowProjectsService;
@@ -18,6 +19,7 @@ public class Controller {
     private final CreateUserService createUserService;
     private final ShowProjectsService showProject;
     private final FindAllUsers findAllUsers;
+    private final CreateProjectService createProjectService;
 
     @RequestMapping("/test")
     public String test(){
@@ -43,9 +45,12 @@ public class Controller {
     }
 
     @RequestMapping(value = "/createProject",consumes = MediaType.APPLICATION_JSON_VALUE)
-    public createProjectResponse findAllUsers(@RequestBody createProjectRequest request){
-        return null;
+    public CreateProjectResponse createProject(@RequestBody CreateProjectRequest request){
+        return createProjectService.process(request);
     }
+
+
+
 
 
 

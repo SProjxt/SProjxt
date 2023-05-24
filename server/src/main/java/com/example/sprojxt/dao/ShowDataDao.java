@@ -20,13 +20,13 @@ public class ShowDataDao {
     private final IUserRepository userRepository;
 
 
-    public Map<Integer, List<UserDetailsInEachProject>> showDataDao(String email){
+    public Map<String, List<UserDetailsInEachProject>> showDataDao(String email){
         List<Tuple> a = projectRepository.findUsersAndProjects(email);
 
 
        var res= a.stream()
-               .map(data -> new UserDetailsInEachProject( data.get("userId",Integer.class),  data.get("userEmail",String.class), data.get("projectId",Integer.class)))
-                .collect(Collectors.groupingBy( projectData-> projectData.ProjectsId));
+               .map(data -> new UserDetailsInEachProject( data.get("userId",Integer.class),  data.get("userEmail",String.class), data.get("projectName",String.class)))
+                .collect(Collectors.groupingBy( projectData-> projectData.ProjectsName));
 
         return res;
     }

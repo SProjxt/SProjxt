@@ -16,4 +16,6 @@ public class FindUserDao {
     public List<Users> findAll(){
         return userRepository.findAll();
     }
+
+    public Users findByUsername(String username ){return userRepository.findByUsername(username);}
 }

@@ -19,6 +19,11 @@ public class CreateUserDao {
        if(user2 !=0){
            return false;
        }
+
+       int user3 = userRepository.countByUsername(user.getUsername());
+        if(user3 !=0){
+            return false;
+        }
         userRepository.save(user);
        return true;
     }

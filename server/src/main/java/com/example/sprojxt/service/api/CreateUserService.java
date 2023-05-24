@@ -27,12 +27,6 @@ public class CreateUserService implements ApiService<CreateUserRequest,CreateUse
 
         boolean confirmCreate = createUserDao.createUser(user);
 
-
-
-//        return CreateUserResponse.builder()
-//                .confirmCreate(confirmCreate? "新增成功" : "已有使用者")
-//                .build();
-/////////
         if (confirmCreate) {
             return CreateUserResponse.builder()
                     .confirmCreate("新增成功")

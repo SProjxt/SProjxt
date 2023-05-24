@@ -13,7 +13,7 @@ import java.util.List;
 public interface ProjectRepository extends JpaRepository<Projects,Integer> {
 
     @Query(value =
-            "select a.id as userId, a.email as userEmail, p.id as projectId from users a "
+            "select a.id as userId, a.email as userEmail, p.name as projectName from users a "
                     +"inner join (select * " +
                                  "from user_projects " +
                                  "where project_id in (select project_id " +
@@ -27,6 +27,8 @@ public interface ProjectRepository extends JpaRepository<Projects,Integer> {
                     "inner join projects p on b.project_id = p.id;"
             ,nativeQuery = true)
     List<Tuple> findUsersAndProjects(String email);
+
+    int countByName(String name);
 
 
 

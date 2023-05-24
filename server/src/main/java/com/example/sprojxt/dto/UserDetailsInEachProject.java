@@ -14,7 +14,7 @@ public class UserDetailsInEachProject {
 
     public String userEmail;
 
-    public Integer ProjectsId;
+    public String ProjectsName;
 
 
 

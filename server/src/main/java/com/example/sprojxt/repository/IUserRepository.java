@@ -20,4 +20,6 @@ public interface IUserRepository extends JpaRepository<Users,Integer> {
 
 
     int countByEmail(String email);
+
+    int countByUsername(String username);
 }

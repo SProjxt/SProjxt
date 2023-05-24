@@ -6,6 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -15,13 +18,12 @@ import lombok.NoArgsConstructor;
 public class Projects {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     Integer id;
     @Column(name = "name")
     String name;
     @Column(name = "description")
-    String description;
-    @Column(name = "createDate")
-    String createDate;
+    String status;
+
 }
