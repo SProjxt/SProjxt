@@ -5,6 +5,7 @@ import com.example.sprojxt.error.DuplicateProjectException;
 import com.example.sprojxt.error.DuplicateUserException;
 import com.example.sprojxt.error.ErrorResponse;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -17,6 +18,16 @@ public class ExceptionHandlerController {
         ErrorResponse error = new ErrorResponse();
         error.setStatus(HttpStatus.CONFLICT.toString());
         error.setMessage(ex.getMessage());
+        error.setTimeStamp(System.currentTimeMillis());
+        return error;
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorResponse MethodArgumentInvalid(MethodArgumentNotValidException e){
+        ErrorResponse error = new ErrorResponse();
+        error.setStatus(HttpStatus.BAD_REQUEST.toString());
+        error.setMessage(e.getMessage());
         error.setTimeStamp(System.currentTimeMillis());
         return error;
     }

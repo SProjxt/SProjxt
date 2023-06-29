@@ -1,17 +1,23 @@
 package com.example.sprojxt.config;
 
+import com.example.sprojxt.entity.Users;
 import com.example.sprojxt.error.AuthenticationFailException;
 import com.example.sprojxt.repository.IUserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.val;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.util.Optional;
 
 @Configuration
 @RequiredArgsConstructor
@@ -22,7 +28,7 @@ public class ApplicationConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return userEmail -> userDao.findFirstByEmail(userEmail)
+        return userEmail -> userDao.findByEmail(userEmail)
                 .orElseThrow(() -> new AuthenticationFailException(
                         "No current User"));
     }
@@ -52,7 +58,7 @@ public class ApplicationConfig {
     @Bean
     //AuthenticationManager是Spring Security中用於處理身份驗證的核心接口。
     // 它負責調用多個AuthenticationProvider對象進行身份驗證，直到找到一個可以驗證成功的Provider為止。
-    public AuthenticationManager authenicationManager(
+    public AuthenticationManager authenticationManager(
             AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }

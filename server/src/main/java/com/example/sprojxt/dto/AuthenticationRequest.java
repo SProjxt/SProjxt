@@ -1,9 +1,8 @@
 package com.example.sprojxt.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import lombok.*;
 
 @Data
 @Builder
@@ -11,7 +10,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AuthenticationRequest {
 
+    @NonNull
+    @Email
+    @NotBlank
     private String email;
+
+    @NonNull
+    @NotBlank
     private String password;
 
 }

@@ -5,6 +5,7 @@ import com.example.sprojxt.dto.AuthenticationRequest;
 import com.example.sprojxt.dto.AuthenticationResponse;
 import com.example.sprojxt.service.AuthenticationService;
 import com.example.sprojxt.dto.RegisterRequest;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class AuthenticationController {
 
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> register(
-            @RequestBody AuthenticationRequest request
+            @RequestBody @Valid AuthenticationRequest request
     ){
 
 
